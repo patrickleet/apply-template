@@ -29,8 +29,9 @@ describe('lib/findTemplateVariables', () => {
   })
 
   it('should return deduped variables found in string in array', () => {
-    let templateVars = findTemplateVariables("hello {[NAME]}, {[NAME]}")
-    expect(templateVars.length).toBe(1)
+    let templateVars = findTemplateVariables("hello {[NAME]}, {[NAME]}, {[PLUGIN_NAME]}")
+    expect(templateVars.length).toBe(2)
     expect(templateVars[0]).toBe('NAME')
+    expect(templateVars[1]).toBe('PLUGIN_NAME')
   })
 })

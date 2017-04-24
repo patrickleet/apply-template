@@ -26,9 +26,9 @@ console.log(`meta template applying \'${srcTemplateDir}\' to ${destProjectDir}`)
 // template variables
 
 const run = async () => {
-  const templateVariables = await findTemplateVariables(srcTemplateDir);
+  const templateVariables = findTemplateVariables(srcTemplateDir);
   const userValues = await getUserInputMapFromTemplateVariables(templateVariables);
-  
+
   ncp(path.join(__dirname, '../templates/svc'), dest, {
     clobber: false,
     rename: function(target) {
