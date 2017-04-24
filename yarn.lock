@@ -442,6 +442,10 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
+concatAll@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/concatAll/-/concatAll-1.0.4.tgz#89f0fec68a30d708435ea77461d875450dddad64"
+
 concurrently@^3.1.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/concurrently/-/concurrently-3.4.0.tgz#60662b3defde07375bae19aac0ab780ec748ba79"

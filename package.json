@@ -35,6 +35,7 @@
     "chalk": "^1.1.3",
     "co": "^4.6.0",
     "commander": "^2.9.0",
+    "concatAll": "^1.0.4",
     "debug": "^2.3.3",
     "loop-things": "0.0.21",
     "meta-exec": "0.0.0",
@@ -46,11 +47,11 @@
   "jest": {
     "testEnvironment": "node",
     "modulePaths": [
-      "lib",
+      "lib/",
       "/node_modules/"
     ],
     "collectCoverageFrom": [
-      "lib"
+      "lib/"
     ]
   }
 }

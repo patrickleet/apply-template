@@ -2,8 +2,10 @@
 
 const program = require('commander')
 const debug = require('debug')('meta-template-apply')
-const findTemplateVariables = require('../lib/findTemplateVariables')
-const getUserInputMapFromTemplateVariables = require('../lib/getUserInputMapFromTemplateVariables')
+const co = require('co')
+const getFilesFromDir = require('../lib/getFilesFromDir')
+const parseFilesForTemplateVariables = require('../lib/parseFilesForTemplateVariables')
+// const getUserInputMapFromTemplateVariables = require('../lib/getUserInputMapFromTemplateVariables')
 
 const usage = `\n  usage:\n\n    meta template apply <srcTemplateDir> <destProjectDir>\n`;
 
@@ -25,32 +27,35 @@ console.log(`meta template applying \'${srcTemplateDir}\' to ${destProjectDir}`)
 // First, let's parse each file in the srcTemplateDir, and find all of the 
 // template variables
 
-const run = async () => {
-  const templateFiles = await getFilesFromDir(srcTemplateDir);
+const run = co.wrap(function *() {
+  const templateFiles = yield getFilesFromDir(srcTemplateDir);
   const templateVariables = parseFilesForTemplateVariables(templateFiles)
-  const userValues = await getUserInputMapFromTemplateVariables(templateVariables);
 
-  ncp(path.join(__dirname, '../templates/svc'), dest, {
-    clobber: false,
-    rename: function(target) {
-      Object.keys(userValues).forEach((templateVariable) => {
-        if (target.indexOf(`{[${templateVariable}]}`) > -1) { 
-          target = target.replace(`{[${templateVariable}]}`, userValues[templateVariable])
-        }
-      })
+  console.log(templateVariables)
+
+  // const userValues = await getUserInputMapFromTemplateVariables(templateVariables);
+
+  // ncp(path.join(__dirname, '../templates/svc'), dest, {
+  //   clobber: false,
+  //   rename: function(target) {
+  //     Object.keys(userValues).forEach((templateVariable) => {
+  //       if (target.indexOf(`{[${templateVariable}]}`) > -1) { 
+  //         target = target.replace(`{[${templateVariable}]}`, userValues[templateVariable])
+  //       }
+  //     })
       
-      return target;
-    },
-    transform: function(read, write, file) {
-      read
-        .pipe((readString) => {
-          return Object.keys(userValues).forEach((templateVariable) => {
-            readString.replace(`/\{\[${templateVariable}\]\}/g`, userValues[templateVariable])
-          })
-        })
-        .pipe(write);
-    }
-  })
-}
+  //     return target;
+  //   },
+  //   transform: function(read, write, file) {
+  //     read
+  //       .pipe((readString) => {
+  //         return Object.keys(userValues).forEach((templateVariable) => {
+  //           readString.replace(`/\{\[${templateVariable}\]\}/g`, userValues[templateVariable])
+  //         })
+  //       })
+  //       .pipe(write);
+  //   }
+  // })
+})
 
 run()
