@@ -22,7 +22,7 @@ const destProjectDir = process.argv[3] === 'blank' ?
 
 if ( ! srcTemplateDir || ! destProjectDir) return console.log(usage)
 
-console.log(`meta template applying \'${srcTemplateDir}\' to ${destProjectDir}`)
+console.log(`meta template applying \'${srcTemplateDir}\' to '${destProjectDir}'`)
 
 // First, let's parse each file in the srcTemplateDir, and find all of the 
 // template variables
@@ -31,7 +31,7 @@ const run = co.wrap(function *() {
   const templateFiles = yield getFilesFromDir(srcTemplateDir);
   const templateVariables = parseFilesForTemplateVariables(templateFiles)
 
-  console.log(templateVariables)
+  console.log(`Found the following template variables:\n\n\t ${templateVariables}\n`)
 
   // const userValues = await getUserInputMapFromTemplateVariables(templateVariables);
 
