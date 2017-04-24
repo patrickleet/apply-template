@@ -4,7 +4,8 @@
   "description": "template plugin for meta",
   "main": "index.js",
   "bin": {
-    "meta-template": "./bin/meta-template"
+    "meta-template": "./bin/meta-template",
+    "meta-template-apply": "./bin/meta-template-apply"
   },
   "scripts": {
     "test": "npm test"

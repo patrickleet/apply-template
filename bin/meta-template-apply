@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const debug = require('debug')('meta-template-apply');
+
+const usage = `\n  usage:\n\n    meta template apply <srcTemplateDir> <destProjectDir>\n`;
+
+if ( ! process.argv[2] || process.argv[2] === '--help')
+  return console.log(usage);
+
+const srcTemplateDir = process.argv[2] === 'blank' ?
+                      process.argv[3] :
+                      process.argv[2];
+
+const destProjectDir = process.argv[3] === 'blank' ?
+                      process.argv[4] :
+                      process.argv[3];
+
+if ( ! srcTemplateDir || ! destProjectDir) return console.log(usage);
+
+console.log(`meta template applying \'${srcTemplateDir}\' to ${destProjectDir}`);
