@@ -290,6 +290,10 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+bluebird@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
+
 boom@2.x.x:
   version "2.10.1"
   resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
@@ -1517,7 +1521,7 @@ mime-types@^2.1.12, mime-types@~2.1.7:
   dependencies:
     mime-db "~1.27.0"
 
-minimatch@^3.0.2, minimatch@^3.0.3:
+minimatch@3.0.3, minimatch@^3.0.2, minimatch@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.0.3.tgz#2a4e4090b96b2db06a9d7df01055a62a77c9b774"
   dependencies:
@@ -1786,6 +1790,12 @@ read-pkg@^1.0.0:
     load-json-file "^1.0.0"
     normalize-package-data "^2.3.2"
     path-type "^1.0.0"
+
+recursive-readdir@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/recursive-readdir/-/recursive-readdir-2.1.1.tgz#a01cfc7f7f38a53ec096a096f63a50489c3e297c"
+  dependencies:
+    minimatch "3.0.3"
 
 regenerator-runtime@^0.10.0:
   version "0.10.3"
