@@ -39,7 +39,10 @@
     "debug": "^2.3.3",
     "loop-things": "0.0.21",
     "meta-exec": "0.0.0",
-    "recursive-readdir": "^2.1.1"
+    "ncp": "^2.0.0",
+    "promptly": "^2.2.0",
+    "recursive-readdir": "^2.1.1",
+    "stream-replace": "^1.0.0"
   },
   "devDependencies": {
     "jest-cli": "^19.0.2"
