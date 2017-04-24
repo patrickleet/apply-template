@@ -31,6 +31,19 @@ describe('lib/parseFilesForTemplateVariables', () => {
 
     let templateVariables = parseFilesForTemplateVariables(fileNames)
     expect(templateVariables.length).toBeGreaterThan(0)
+
+    let counts = {}
+    templateVariables.forEach((templateVar) => {
+      if (counts[templateVar]) {
+        counts[templateVar] = counts[templateVar] + 1
+      } else {
+        counts[templateVar] = 1;
+      }
+    })
+
+    Object.keys(counts).map((key) => {
+      expect(counts[key]).not.toBeGreaterThan(1)
+    })
   }))
 
 })
