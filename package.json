@@ -8,7 +8,9 @@
     "meta-template-apply": "./bin/meta-template-apply"
   },
   "scripts": {
-    "test": "npm test"
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --coverage --watch"
   },
   "repository": {
     "type": "git",
@@ -34,5 +36,18 @@
     "debug": "^2.3.3",
     "loop-things": "0.0.21",
     "meta-exec": "0.0.0"
+  },
+  "devDependencies": {
+    "jest-cli": "^19.0.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "modulePaths": [
+      "lib",
+      "/node_modules/"
+    ],
+    "collectCoverageFrom": [
+      "lib/**/*.js"
+    ]
   }
 }
