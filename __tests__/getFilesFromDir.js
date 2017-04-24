@@ -6,8 +6,9 @@ describe('when using getFilesFromDirectory', () => {
 
   it('it returns the filenames inside of that directory, as well as the files from the subdirectories as an array', co.wrap(function *() {
     let fileNames = yield getFilesFromDir(testDir);
-    expect(fileNames.length).toBe(2)
-    expect(fileNames[0]).toContain('index.js')
-    expect(fileNames[1]).toContain('bin-file')
+    expect(fileNames.length).toBe(3)
+    expect(fileNames[0]).toContain('.gitignore')
+    expect(fileNames[1]).toContain('index.js')
+    expect(fileNames[2]).toContain('bin-file')
   }));
 });
