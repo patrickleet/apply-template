@@ -8,9 +8,7 @@ const program = require('commander');
 const debug = require('debug')('meta-template');
 
 program
-  // .command('checkout', 'checkout a common branch across all repositories')
-  // .command('clone', 'clone meta and child repositories')
-  // .command('status', 'template status of meta and child repositories')
+  .command('apply', 'apply a source directory as a template on another destination directory')
   .parse(process.argv);
 
 loaded = true;
