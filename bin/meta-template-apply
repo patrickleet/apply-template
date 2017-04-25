@@ -4,12 +4,15 @@ const program = require('commander')
 const debug = require('debug')('meta-template-apply')
 const co = require('co')
 const ncp = require('ncp')
+const fs = require('fs')
 const path = require('path')
 const getFilesFromDir = require('../lib/getFilesFromDir')
 const parseFilesForTemplateVariables = require('../lib/parseFilesForTemplateVariables')
 const getUserInputMap = require('../lib/getUserInputMap')
 const replace = require('stream-replace')
 const gitignored = require('../lib/gitignored')
+
+const Readable = require('stream').Readable
 
 const usage = `\n  usage:\n\n    meta template apply <srcTemplateDir> <destProjectDir>\n`;
 
@@ -57,10 +60,23 @@ const run = co.wrap(function *() {
       return target;
     },
     transform: function(read, write, file) {
-      Object.keys(userValues).forEach((key) => {
-        read.pipe(replace(new RegExp(`\{\[${key}\]\}`, 'g'), userValues[key]))
-      })
-      read.pipe(write);
+
+      var s = new Readable()
+      s._read = function noop() {}
+
+      if (!gitignoreRegExp.test(file.name)) {
+        let fileString = fs.readFileSync(file.name, 'utf-8')
+
+        Object.keys(userValues).forEach((key) => {
+          let regex = new RegExp(`\\{\\[${key}\\]\\}`, 'g')
+          fileString = fileString.replace(regex, userValues[key])
+        })
+
+        s.push(fileString)
+      }
+
+      s.push(null)
+      s.pipe(write)
     }
   }, function(err) {
     if (err) throw new Error(err)
