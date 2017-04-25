@@ -43,8 +43,10 @@ const run = co.wrap(function *() {
   const gitignoreRegExp = gitignored.gitignoreRegExp(gitignoredArr)
 
   ncp(path.join(process.cwd(), srcTemplateDir), destProjectDir, {
-    clobber: false,
-    filter: gitignoreRegExp,
+    clobber: true,
+    filter: function(fileName) {
+      return !gitignoreRegExp.test(fileName)
+    },
     rename: function(target) {
       Object.keys(userValues).forEach((templateVariable) => {
         if (target.indexOf(`{[${templateVariable}]}`) > -1) { 
@@ -55,7 +57,6 @@ const run = co.wrap(function *() {
       return target;
     },
     transform: function(read, write, file) {
-      console.log({file})
       Object.keys(userValues).forEach((key) => {
         read.pipe(replace(new RegExp(`\{\[${key}\]\}`, 'g'), userValues[key]))
       })
