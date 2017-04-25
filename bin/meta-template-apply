@@ -9,6 +9,7 @@ const getFilesFromDir = require('../lib/getFilesFromDir')
 const parseFilesForTemplateVariables = require('../lib/parseFilesForTemplateVariables')
 const getUserInputMap = require('../lib/getUserInputMap')
 const replace = require('stream-replace')
+const gitignored = require('../lib/gitignored')
 
 const usage = `\n  usage:\n\n    meta template apply <srcTemplateDir> <destProjectDir>\n`;
 
@@ -38,8 +39,11 @@ const run = co.wrap(function *() {
 
   const userValues = yield getUserInputMap(templateVariables)
 
+  const gitignoredArr = gitignored.getGitignored(path.join(process.cwd(), srcTemplateDir, '.gitignore'))
+
   ncp(path.join(process.cwd(), srcTemplateDir), destProjectDir, {
     clobber: false,
+    filter: new RegExp(),
     rename: function(target) {
       Object.keys(userValues).forEach((templateVariable) => {
         if (target.indexOf(`{[${templateVariable}]}`) > -1) { 
@@ -50,8 +54,9 @@ const run = co.wrap(function *() {
       return target;
     },
     transform: function(read, write, file) {
+      console.log({file})
       Object.keys(userValues).forEach((key) => {
-        read.pipe(replace(key, userValues[key]))
+        read.pipe(replace(new RegExp(`\{\[${key}\]\}`, 'g'), userValues[key]))
       })
       read.pipe(write);
     }
