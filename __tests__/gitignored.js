@@ -7,6 +7,7 @@ describe('lib/gitignored', () => {
   let regExp = gitignored.gitignoreRegExp(arr);
 
   it('.getGitignored() returns an array of entries from a .gitignore file', () => {
+    // always includes .git, and shouldn't include comments
     expect(arr.length).toBe(3)
   })
 

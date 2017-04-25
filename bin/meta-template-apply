@@ -40,10 +40,11 @@ const run = co.wrap(function *() {
   const userValues = yield getUserInputMap(templateVariables)
 
   const gitignoredArr = gitignored.getGitignored(path.join(process.cwd(), srcTemplateDir, '.gitignore'))
+  const gitignoreRegExp = gitignored.gitignoreRegExp(gitignoredArr)
 
   ncp(path.join(process.cwd(), srcTemplateDir), destProjectDir, {
     clobber: false,
-    filter: new RegExp(),
+    filter: gitignoreRegExp,
     rename: function(target) {
       Object.keys(userValues).forEach((templateVariable) => {
         if (target.indexOf(`{[${templateVariable}]}`) > -1) { 
