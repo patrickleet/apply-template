@@ -1,6 +1,6 @@
 {
   "name": "meta-template",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "description": "template plugin for meta",
   "main": "index.js",
   "bin": {
@@ -8,13 +8,11 @@
     "meta-template-apply": "./bin/meta-template-apply"
   },
   "scripts": {
+    "commit": "git-cz",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --coverage --watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/patrickleet/meta-template.git"
+    "test:watch": "jest --coverage --watch",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "keywords": [
     "template",
@@ -25,9 +23,9 @@
     "metarepo"
   ],
   "author": "pat@patscott.io",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/patrickleet/meta/issues"
+    "url": "https://github.com/patrickleet/meta-template/issues"
   },
   "homepage": "https://github.com/patrickleet/meta-template#readme",
   "dependencies": {
@@ -45,7 +43,10 @@
     "stream-replace": "^1.0.0"
   },
   "devDependencies": {
-    "jest-cli": "^19.0.2"
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "jest-cli": "^19.0.2",
+    "semantic-release": "^6.3.2"
   },
   "jest": {
     "testEnvironment": "node",
@@ -56,5 +57,9 @@
     "collectCoverageFrom": [
       "lib/"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patrickleet/meta-template.git"
   }
 }
