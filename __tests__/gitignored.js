@@ -8,11 +8,11 @@ describe('lib/gitignored', () => {
 
   it('.getGitignored() returns an array of entries from a .gitignore file', () => {
     // always includes .git, and shouldn't include comments
-    expect(arr.length).toBe(3)
+    expect(arr.length).toBe(4)
   })
 
   it('.gitignoredRegExpString() returns a string that is a regexp that matches all entries from array', () => {
-    expect(regExpStr).toBe(`(node_modules|\\.DS_Store|\\.git)`)
+    expect(regExpStr).toBe(`(node_modules|\\.DS_Store|(.+)\\.log|\\.git)`)
   })
 
   it('.gitignoreRegExp() returns a regexp', () => {
