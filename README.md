@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/patrickleet/meta-template.svg?branch=master)](https://travis-ci.org/patrickleet/meta-template)
+
 # meta-template
 template plugin for meta
 
