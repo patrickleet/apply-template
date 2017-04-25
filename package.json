@@ -61,5 +61,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/patrickleet/meta-template.git"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
