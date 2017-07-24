@@ -16,61 +16,89 @@ const Readable = require('stream').Readable
 
 const usage = `\n  usage:\n\n    meta template apply <srcTemplateDir> <destProjectDir>\n`;
 
-if ( ! process.argv[2] || process.argv[2] === '--help')
-  return console.log(usage)
+const args = require('minimist')(process.argv)
+
+if (!process.argv[2] || process.argv[2] === '--help') {
+  console.log(usage)
+  process.exit(0)
+}
 
 const srcTemplateDir = process.argv[2] === 'blank' ?
-                      process.argv[3] :
-                      process.argv[2]
-
+  process.argv[3] :
+  process.argv[2]
 const destProjectDir = process.argv[3] === 'blank' ?
-                      process.argv[4] :
-                      process.argv[3]
+  process.argv[4] :
+  process.argv[3]
 
-if ( ! srcTemplateDir || ! destProjectDir) return console.log(usage)
+if (!srcTemplateDir || !destProjectDir) {
+  console.log(usage)
+  process.exit(1)
+}
 
-console.log(`meta template applying \'${srcTemplateDir}\' to '${destProjectDir}'`)
+console.log(
+  `meta template applying \'${srcTemplateDir}\' to '${destProjectDir}'`
+)
 
-// First, let's parse each file in the srcTemplateDir, and find all of the 
+// First, let's parse each file in the srcTemplateDir, and find all of the
 // template variables
 
-const run = co.wrap(function *() {
+const run = co.wrap(function* () {
   const templateFiles = yield getFilesFromDir(srcTemplateDir);
   const templateVariables = parseFilesForTemplateVariables(templateFiles)
 
   console.log(`Found the following template variables:\n\n\t ${templateVariables}\n`)
 
-  const userValues = yield getUserInputMap(templateVariables)
+  const unresolvedVariables = []
+  const resolvedVariables = templateVariables.reduce(
+    (resolutions, variableName) => {
+      let value = args[variableName]
+      if (value) {
+        resolutions[variableName] = value
+        console.log(`Using value '${value}' for '${variableName}'`)
+      } else {
+        unresolvedVariables.push(variableName)
+      }
+      return resolutions
+    },
+    {}
+  )
+
+  Object.assign(
+    resolvedVariables,
+    yield getUserInputMap(unresolvedVariables)
+  )
 
   const gitignoredArr = gitignored.getGitignored(path.join(process.cwd(), srcTemplateDir, '.gitignore'))
   const gitignoreRegExp = gitignored.gitignoreRegExp(gitignoredArr)
 
   ncp(path.join(process.cwd(), srcTemplateDir), destProjectDir, {
     clobber: true,
-    filter: function(fileName) {
+    filter: function (fileName) {
       return !gitignoreRegExp.test(fileName)
     },
-    rename: function(target) {
-      Object.keys(userValues).forEach((templateVariable) => {
-        if (target.indexOf(`{[${templateVariable}]}`) > -1) { 
-          target = target.replace(`{[${templateVariable}]}`, userValues[templateVariable])
+    rename: function (target) {
+      Object.keys(resolvedVariables).forEach(templateVariable => {
+        if (target.indexOf(`{[${templateVariable}]}`) > -1) {
+          target = target.replace(
+            `{[${templateVariable}]}`,
+            resolvedVariables[templateVariable]
+          )
         }
       })
-      
+
       return target;
     },
-    transform: function(read, write, file) {
-
+    transform: function (read, write, file) {
       var s = new Readable()
-      s._read = function noop() {}
+      s._read = function noop() { }
 
       if (!gitignoreRegExp.test(file.name)) {
         let fileString = fs.readFileSync(file.name, 'utf-8')
 
-        Object.keys(userValues).forEach((key) => {
-          let regex = new RegExp(`\\{\\[${key}\\]\\}`, 'g')
-          fileString = fileString.replace(regex, userValues[key])
-        })
+        for (let [variableName, value] of Object.entries(resolvedVariables)) {
+          let regex = new RegExp(`\\{\\[${variableName}\\]\\}`, 'g')
+          fileString = fileString.replace(regex, value)
+        }
 
         s.push(fileString)
       }
@@ -78,7 +106,7 @@ const run = co.wrap(function *() {
       s.push(null)
       s.pipe(write)
     }
-  }, function(err) {
+  }, function (err) {
     if (err) throw new Error(err)
     console.log('Template Applied')
   })

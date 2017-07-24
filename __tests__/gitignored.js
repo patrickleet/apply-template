@@ -16,6 +16,7 @@ describe('lib/gitignored', () => {
   })
 
   it('.gitignoreRegExp() returns a regexp', () => {
-    console.log({regExpStr, regExp})
+    expect(regExp).toBeInstanceOf(RegExp)
+    //console.log({regExpStr, regExp})
   })
 })
