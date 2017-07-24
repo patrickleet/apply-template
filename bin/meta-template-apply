@@ -31,7 +31,7 @@ if ( ! srcTemplateDir || ! destProjectDir) return console.log(usage)
 
 console.log(`meta template applying \'${srcTemplateDir}\' to '${destProjectDir}'`)
 
-// First, let's parse each file in the srcTemplateDir, and find all of the 
+// First, let's parse each file in the srcTemplateDir, and find all of the
 // template variables
 
 const run = co.wrap(function *() {
@@ -45,18 +45,18 @@ const run = co.wrap(function *() {
   const gitignoredArr = gitignored.getGitignored(path.join(process.cwd(), srcTemplateDir, '.gitignore'))
   const gitignoreRegExp = gitignored.gitignoreRegExp(gitignoredArr)
 
-  ncp(path.join(process.cwd(), srcTemplateDir), destProjectDir, {
+  ncp(path.resolve(process.cwd(), srcTemplateDir), path.resolve(process.cwd(), destProjectDir), {
     clobber: true,
     filter: function(fileName) {
       return !gitignoreRegExp.test(fileName)
     },
     rename: function(target) {
       Object.keys(userValues).forEach((templateVariable) => {
-        if (target.indexOf(`{[${templateVariable}]}`) > -1) { 
+        if (target.indexOf(`{[${templateVariable}]}`) > -1) {
           target = target.replace(`{[${templateVariable}]}`, userValues[templateVariable])
         }
       })
-      
+
       return target;
     },
     transform: function(read, write, file) {
