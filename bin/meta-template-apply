@@ -71,7 +71,7 @@ const run = co.wrap(function* () {
   const gitignoredArr = gitignored.getGitignored(path.join(process.cwd(), srcTemplateDir, '.gitignore'))
   const gitignoreRegExp = gitignored.gitignoreRegExp(gitignoredArr)
 
-  ncp(path.join(process.cwd(), srcTemplateDir), destProjectDir, {
+  ncp(path.resolve(process.cwd(), srcTemplateDir), path.resolve(process.cwd(), destProjectDir), {
     clobber: true,
     filter: function (fileName) {
       return !gitignoreRegExp.test(fileName)
