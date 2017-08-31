@@ -32,6 +32,13 @@ Enter a value for 'GITHUB_USERNAME': patrickleet
 Enter a value for 'GITHUB_EMAIL': pat@patscott.io
 ```
 
+#### Specifying options
+It's also possible to set variables when running the command
+```
+meta template apply templates/test-template --FULL_NAME="Patrick Scott"
+```
+
+
 ## Templates
 
 * (meta-plugin)[https://github.com/patrickleet/meta-template-meta-plugin]
