@@ -96,7 +96,7 @@ const run = co.wrap(function* () {
         let fileString = fs.readFileSync(file.name, 'utf-8')
 
         for (let [variableName, value] of Object.entries(resolvedVariables)) {
-          let regex = new RegExp(`\\{\\[${variableName}\\]\\}`, 'g')
+          let regex = new RegExp(`\\{\\[\\.${variableName}\\.\\]\\}`, 'g')
           fileString = fileString.replace(regex, value)
         }
 
