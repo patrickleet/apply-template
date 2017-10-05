@@ -15,7 +15,7 @@ Templates can contain variables, which the user will be prompted to fill when ap
 
 Example Template File
 ```
-Hello, {[NAME]}
+Hello, {[.NAME.]}
 ```
 
 When applying the above template, the user would be prompted to provide a value for `NAME`
