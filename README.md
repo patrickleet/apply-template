@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/patrickleet/meta-template.svg?branch=master)](https://travis-ci.org/patrickleet/meta-template)
 
 # meta-template
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/patrickleet/meta-template.svg)](https://greenkeeper.io/)
 template plugin for meta
 
 ## Usage
