@@ -9,10 +9,11 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --coverage --watch",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "jest --config jest.json --coverage",
+    "test:coverage": "jest --config jest.json --coverage",
+    "test:watch": "jest --config jest.json --watch",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "keywords": [
     "template",
@@ -47,7 +48,8 @@
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
     "jest-cli": "^19.0.2",
-    "semantic-release": "^6.3.2"
+    "semantic-release": "^15.0.3",
+    "travis-deploy-once": "^4.4.1"
   },
   "jest": {
     "testEnvironment": "node",

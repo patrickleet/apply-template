@@ -71,12 +71,18 @@ const run = co.wrap(function* () {
   const gitignoredArr = gitignored.getGitignored(path.join(process.cwd(), srcTemplateDir, '.gitignore'))
   const gitignoreRegExp = gitignored.gitignoreRegExp(gitignoredArr)
 
-  ncp(path.resolve(process.cwd(), srcTemplateDir), path.resolve(process.cwd(), destProjectDir), {
+  const srcDir = path.resolve(process.cwd(), srcTemplateDir)
+  const destDir = path.resolve(process.cwd(), destProjectDir)
+
+  ncp(srcDir, destDir, {
     clobber: true,
     filter: function (fileName) {
-      return !gitignoreRegExp.test(fileName)
+      let include = ! (gitignoreRegExp.test(fileName) || fileName.indexOf('.git/') > -1)
+      debug('filter', fileName, include)
+      return include
     },
     rename: function (target) {
+      debug('rename', target)
       Object.keys(resolvedVariables).forEach(templateVariable => {
         if (target.indexOf(`{[${templateVariable}]}`) > -1) {
           target = target.replace(
@@ -89,6 +95,7 @@ const run = co.wrap(function* () {
       return target;
     },
     transform: function (read, write, file) {
+      debug('transform', file.name)
       var s = new Readable()
       s._read = function noop() { }
 

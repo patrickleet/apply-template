@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/patrickleet/meta-template.svg?branch=master)](https://travis-ci.org/patrickleet/meta-template)
-
 # meta-template
+[![Build Status](https://travis-ci.org/patrickleet/meta-template.svg?branch=master)](https://travis-ci.org/patrickleet/meta-template)
+[![codecov](https://codecov.io/gh/patrickleet/meta-template/branch/master/graph/badge.svg)](https://codecov.io/gh/patrickleet/meta-template)
 template plugin for meta
 
 ## Usage
