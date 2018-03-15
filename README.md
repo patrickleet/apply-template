@@ -44,3 +44,9 @@ meta template apply templates/test-template --FULL_NAME="Patrick Scott"
 * (meta-plugin)[https://github.com/patrickleet/meta-template-meta-plugin]
 
 Please contibute more templates! It's super easy!
+
+## Usage without meta
+
+```
+meta-template apply src dest
+```
