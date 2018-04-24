@@ -37,7 +37,7 @@
     "concatAll": "^1.0.4",
     "debug": "^3.1.0",
     "loop-things": "0.0.23",
-    "meta-exec": "0.0.7",
+    "meta-exec": "0.0.8",
     "minimist": "^1.2.0",
     "ncp": "^2.0.0",
     "promptly": "^3.0.3",
