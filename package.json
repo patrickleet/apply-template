@@ -49,7 +49,7 @@
     "cz-conventional-changelog": "^2.0.0",
     "jest-cli": "^22.4.2",
     "semantic-release": "^15.0.3",
-    "travis-deploy-once": "^4.4.1"
+    "travis-deploy-once": "^5.0.0"
   },
   "jest": {
     "testEnvironment": "node",
