@@ -7,12 +7,6 @@ template plugin for meta
 
 ## Usage
 
-### Create a template from a git repository
-
-```
-meta project add templates/meta-plugin git@github.com:patrickleet/meta-template-meta-plugin.git
-```
-
 Templates can contain variables, which the user will be prompted to fill when applying the template.
 
 Example Template File
@@ -25,13 +19,9 @@ When applying the above template, the user would be prompted to provide a value 
 ### Applying the template
 
 ```
-> meta project add plugins/meta-docker-compose git@github.com:patrickleet/meta-docker-compose.git
-> meta template apply templates/meta-plugin plugins/meta-docker-compose
+> meta template apply ./my-microservice ./new-microservice
 
-Enter a value for 'PLUGIN_NAME': docker-compose
-Enter a value for 'FULL_NAME': Patrick Scott
-Enter a value for 'GITHUB_USERNAME': patrickleet
-Enter a value for 'GITHUB_EMAIL': pat@patscott.io
+Enter a value for 'MICROSERVICE_NAME': todolist-model-service
 ```
 
 #### Specifying options
