@@ -5,7 +5,7 @@ let loaded = false;
 if (loaded) return process.kill();
 
 const program = require('commander');
-const debug = require('debug')('meta-template');
+const debug = require('debug')('template');
 
 program
   .command('apply', 'apply a source directory as a template on another destination directory')

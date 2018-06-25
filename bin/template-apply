@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander')
-const debug = require('debug')('meta-template-apply')
+const debug = require('debug')('template')
 const co = require('co')
 const ncp = require('ncp')
 const fs = require('fs')
@@ -14,7 +14,7 @@ const gitignored = require('../lib/gitignored')
 
 const Readable = require('stream').Readable
 
-const usage = `\n  usage:\n\n    meta template apply <srcTemplateDir> <destProjectDir>\n`;
+const usage = `\n  usage:\n\n    template apply <srcTemplateDir> <destProjectDir>\n`;
 
 const args = require('minimist')(process.argv)
 
@@ -36,7 +36,7 @@ if (!srcTemplateDir || !destProjectDir) {
 }
 
 console.log(
-  `meta template applying \'${srcTemplateDir}\' to '${destProjectDir}'`
+  `applying template \'${srcTemplateDir}\' to '${destProjectDir}'`
 )
 
 // First, let's parse each file in the srcTemplateDir, and find all of the
@@ -47,6 +47,8 @@ const run = co.wrap(function* () {
   const templateVariables = parseFilesForTemplateVariables(templateFiles)
 
   console.log(`Found the following template variables:\n\n\t ${templateVariables}\n`)
+
+  debug('applying template')
 
   const unresolvedVariables = []
   const resolvedVariables = templateVariables.reduce(
@@ -62,6 +64,9 @@ const run = co.wrap(function* () {
     },
     {}
   )
+  
+  debug('resolvedVariables')
+  debug(resolvedVariables)
 
   Object.assign(
     resolvedVariables,

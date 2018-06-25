@@ -1,11 +1,11 @@
 {
-  "name": "meta-template",
+  "name": "template",
   "version": "0.0.0-development",
-  "description": "template plugin for meta",
+  "description": "use an existing repository as a template",
   "main": "index.js",
   "bin": {
-    "meta-template": "./bin/meta-template",
-    "meta-template-apply": "./bin/meta-template-apply"
+    "template": "./bin/template",
+    "template-apply": "./bin/template-apply"
   },
   "scripts": {
     "commit": "git-cz",
@@ -17,11 +17,9 @@
   },
   "keywords": [
     "template",
-    "meta",
     "repo",
-    "repository",
-    "metarepository",
-    "metarepo"
+    "clone",
+    "cp"
   ],
   "author": "pat@patscott.io",
   "license": "MIT",
@@ -30,26 +28,24 @@
   },
   "homepage": "https://github.com/patrickleet/meta-template#readme",
   "dependencies": {
-    "bluebird": "^3.5.0",
-    "chalk": "^2.3.2",
+    "bluebird": "^3.5.1",
+    "chalk": "^2.4.1",
     "co": "^4.6.0",
-    "commander": "^2.9.0",
+    "commander": "^2.15.1",
     "concatAll": "^1.0.4",
     "debug": "^3.1.0",
-    "loop-things": "0.0.23",
-    "meta-exec": "0.0.7",
+    "jest": "^23.2.0",
     "minimist": "^1.2.0",
     "ncp": "^2.0.0",
-    "promptly": "^3.0.3",
-    "recursive-readdir": "^2.1.1",
+    "promptly": "^2.2.0",
+    "recursive-readdir": "^2.2.2",
     "stream-replace": "^1.0.0"
   },
   "devDependencies": {
-    "commitizen": "^2.9.6",
-    "cz-conventional-changelog": "^2.0.0",
-    "jest-cli": "^22.4.2",
-    "semantic-release": "^15.0.3",
-    "travis-deploy-once": "^4.4.1"
+    "commitizen": "^2.10.1",
+    "cz-conventional-changelog": "^2.1.0",
+    "semantic-release": "^15.6.0",
+    "travis-deploy-once": "^5.0.0"
   },
   "jest": {
     "testEnvironment": "node",
