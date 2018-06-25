@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const program = require('commander')
-const debug = require('debug')('template')
+const debug = require('debug')('apply-template')
 const co = require('co')
 const ncp = require('ncp')
 const fs = require('fs')
@@ -14,7 +14,7 @@ const gitignored = require('../lib/gitignored')
 
 const Readable = require('stream').Readable
 
-const usage = `\n  usage:\n\n    template apply <srcTemplateDir> <destProjectDir>\n`;
+const usage = `\n  usage:\n\n    apply-template <srcTemplateDir> <destProjectDir>\n`;
 
 const args = require('minimist')(process.argv)
 
@@ -72,6 +72,8 @@ const run = co.wrap(function* () {
     resolvedVariables,
     yield getUserInputMap(unresolvedVariables)
   )
+
+  
 
   const gitignoredArr = gitignored.getGitignored(path.join(process.cwd(), srcTemplateDir, '.gitignore'))
   const gitignoreRegExp = gitignored.gitignoreRegExp(gitignoredArr)

@@ -1,11 +1,10 @@
 {
-  "name": "template",
+  "name": "apply-template",
   "version": "0.0.0-development",
   "description": "use an existing repository as a template",
   "main": "index.js",
   "bin": {
-    "template": "./bin/template",
-    "template-apply": "./bin/template-apply"
+    "apply-template": "./bin/apply-template"
   },
   "scripts": {
     "commit": "git-cz",
