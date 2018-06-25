@@ -19,7 +19,7 @@ When applying the above template, the user would be prompted to provide a value 
 ### Applying the template
 
 ```
-> meta template apply ./my-microservice ./new-microservice
+> apply-template ./my-microservice ./new-microservice
 
 Enter a value for 'MICROSERVICE_NAME': todolist-model-service
 ```
@@ -27,7 +27,7 @@ Enter a value for 'MICROSERVICE_NAME': todolist-model-service
 #### Specifying options
 It's also possible to set variables when running the command
 ```
-meta template apply templates/test-template --FULL_NAME="Patrick Scott"
+apply-template templates/test-template --FULL_NAME="Patrick Scott"
 ```
 
 
