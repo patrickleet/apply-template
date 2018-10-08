@@ -32,7 +32,7 @@
     "co": "^4.6.0",
     "commander": "^2.15.1",
     "concatAll": "^1.0.4",
-    "debug": "^4.0.0",
+    "debug": "^4.1.0",
     "minimist": "^1.2.0",
     "ncp": "^2.0.0",
     "promptly": "^3.0.3",
