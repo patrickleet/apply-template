@@ -91,9 +91,9 @@ const run = co.wrap(function* () {
     rename: function (target) {
       debug('rename', target)
       Object.keys(resolvedVariables).forEach(templateVariable => {
-        if (target.indexOf(`{[${templateVariable}]}`) > -1) {
+        if (target.indexOf(`{[.${templateVariable}.]}`) > -1) {
           target = target.replace(
-            `{[${templateVariable}]}`,
+            `{[.${templateVariable}.]}`,
             resolvedVariables[templateVariable]
           )
         }
