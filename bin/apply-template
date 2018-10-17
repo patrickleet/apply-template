@@ -68,12 +68,12 @@ const run = co.wrap(function* () {
   debug('resolvedVariables')
   debug(resolvedVariables)
 
+  const inputsForUnresolvedVariables = yield getUserInputMap(unresolvedVariables)
+
   Object.assign(
     resolvedVariables,
-    yield getUserInputMap(unresolvedVariables)
+    inputsForUnresolvedVariables
   )
-
-  
 
   const gitignoredArr = gitignored.getGitignored(path.join(process.cwd(), srcTemplateDir, '.gitignore'))
   const gitignoreRegExp = gitignored.gitignoreRegExp(gitignoredArr)

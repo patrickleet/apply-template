@@ -12,7 +12,7 @@ describe('lib/gitignored', () => {
   })
 
   it('.gitignoredRegExpString() returns a string that is a regexp that matches all entries from array', () => {
-    expect(regExpStr).toBe(`(node_modules|\\.DS_Store|(.+)\\.log|\\.git)$`)
+    expect(regExpStr).toBe(`(node_modules/?|node_modules/(.+)|\\.DS_Store/?|\\.DS_Store/(.+)|(.+)\\.log$|\\.git/?|\\.git/(.+))`)
   })
 
   it('.gitignoreRegExp() returns a regexp', () => {
