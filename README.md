@@ -27,7 +27,7 @@ Enter a value for 'MICROSERVICE_NAME': todolist-model-service
 #### Specifying options
 It's also possible to set variables when running the command
 ```
-apply-template templates/test-template --FULL_NAME="Patrick Scott"
+apply-template templates/test-template my-target-dir --FULL_NAME="Patrick Scott"
 ```
 
 
