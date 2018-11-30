@@ -33,6 +33,6 @@ apply-template templates/test-template my-target-dir --FULL_NAME="Patrick Scott"
 
 ## Templates
 
-* (meta-plugin)[https://github.com/patrickleet/meta-template-meta-plugin]
+* [meta-plugin](https://github.com/patrickleet/meta-template-meta-plugin)
 
-Please contibute more templates! It's super easy!
+Please contribute more templates! It's super easy!
