@@ -30,7 +30,7 @@
     "bluebird": "^3.5.1",
     "chalk": "^2.4.1",
     "co": "^4.6.0",
-    "commander": "^2.15.1",
+    "commander": "^4.0.0",
     "concatAll": "^1.0.4",
     "debug": "^4.1.0",
     "minimist": "^1.2.0",
