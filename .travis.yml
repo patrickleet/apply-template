@@ -7,10 +7,9 @@ notifications:
 node_js:
   - 15
 before_install:
-  - 'npm install -g npm@latest'
-install:
-  - npm install
   - npm install -g codecov
+install:
+  - npm ci
 script:
   - npm run test
   - codecov
