@@ -1,7 +1,6 @@
 # apply-template
 [![Build Status](https://travis-ci.org/patrickleet/apply-template.svg?branch=master)](https://travis-ci.org/patrickleet/apply-template)
 [![codecov](https://codecov.io/gh/patrickleet/meta-template/branch/master/graph/badge.svg)](https://codecov.io/gh/patrickleet/meta-template)
-[![Greenkeeper badge](https://badges.greenkeeper.io/patrickleet/apply-template.svg)](https://greenkeeper.io/)
 
 use an existing repository as a template
 
