@@ -2,7 +2,7 @@
   "name": "apply-template",
   "version": "0.0.0-development",
   "description": "use an existing repository as a template",
-  "main": "index.js",
+  "main": "./bin/apply-template",
   "bin": {
     "apply-template": "./bin/apply-template"
   },
