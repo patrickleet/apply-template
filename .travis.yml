@@ -6,13 +6,11 @@ notifications:
   email: false
 node_js:
   - 15
-before_install:
-  - npm install -g codecov
 install:
   - npm ci
 script:
   - npm run test
-  - codecov
+  - npm run codecov
 after_success:
   - npm run travis-deploy-once "npm run semantic-release"
 branches:
