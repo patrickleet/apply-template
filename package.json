@@ -8,6 +8,7 @@
   },
   "scripts": {
     "commit": "git-cz",
+    "codecov": "codecov",
     "test": "jest --config jest.json --coverage",
     "test:coverage": "jest --config jest.json --coverage",
     "test:watch": "jest --config jest.json --watch",
