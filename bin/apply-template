@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 
-const program = require('commander')
-const debug = require('debug')('apply-template')
 const co = require('co')
-const ncp = require('ncp')
+const debug = require('debug')('apply-template')
 const fs = require('fs')
+const ncp = require('ncp')
 const path = require('path')
 const getFilesFromDir = require('../lib/getFilesFromDir')
-const parseFilesForTemplateVariables = require('../lib/parseFilesForTemplateVariables')
 const getUserInputMap = require('../lib/getUserInputMap')
-const replace = require('stream-replace')
 const gitignored = require('../lib/gitignored')
+const parseFilesForTemplateVariables = require('../lib/parseFilesForTemplateVariables')
 
 const Readable = require('stream').Readable
 
