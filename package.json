@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "codecov": "3.8.3",
-    "commitizen": "4.2.4",
+    "commitizen": "4.2.5",
     "cz-conventional-changelog": "3.3.0",
     "jest": "27.5.1",
     "semantic-release": "19.0.3"
