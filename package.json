@@ -41,7 +41,7 @@
     "commitizen": "4.2.5",
     "cz-conventional-changelog": "3.3.0",
     "jest": "27.5.1",
-    "semantic-release": "19.0.4"
+    "semantic-release": "19.0.5"
   },
   "jest": {
     "testEnvironment": "node",
