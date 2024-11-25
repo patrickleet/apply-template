@@ -33,7 +33,7 @@
     "debug": "^4.3.2",
     "minimist": "^1.2.5",
     "ncp": "^2.0.0",
-    "promptly": "^2.2.0",
+    "promptly": "^3.0.0",
     "recursive-readdir": "^2.2.2"
   },
   "devDependencies": {
